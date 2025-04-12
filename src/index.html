@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesouros Históricos</title>
+    <script type="module" src="./script.js"></script>
+    <script type="module">
+        import { updateGame3Colors } from './script.js'
+        updateGame3Colors()
+    </script>
+    <!-- jquery-3.6.0 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- FitText.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"></script>
+    <!-- font-awesome - 6.5.2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="./Style/game3.css">
+    <!-- phaser -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@v3.80.1/dist/phaser.min.js"></script>
+    <!-- Vlibras -->
+     <script src="./js/librasBeauty.js"></script>
+    <style>
+        .gameAccessibleContainer{
+            position: relative!important;
+            border: 1px solid var(--blue-baby)!important;
+            border-radius: 15px !important;
+            transition: width 1s ease, height 1s ease, opacity .95s ease !important;
+        }
+        div[vw]{
+            position: absolute;
+            top: 0%!important;
+            right: 0%!important;
+            max-width: 100% !important;
+            width: 100%;
+            min-height: 4vh;
+            min-width: 4vh;
+            transform: translateY(0)!important;
+            z-index: 10 !important;
+            transition: none !important;
+        } 
+        [vw] [vw-plugin-wrapper].active{
+            width: 100%!important;
+            height: 100% !important;
+            top: 0!important;
+            right: 0!important;
+            transform: translate(0%, 0%)!important;
+
+        } 
+        .vpw-header-btn-close{
+            background-color: red!important;
+        }
+        .vpw-controls-fullscreen{
+            display: none !important;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="navEl">
+            <button class="logoBtn navBtn" sec_num="2" id="nav_logoBtn" title="logotipo">
+                <a href="./../../../index.html">
+                    <img src="https://res.cloudinary.com/dqzwqdc0a/image/upload/v1742615205/DGAS-Plataforma/plataforma/logos/tfvzp42yba2y5wam9ghc.png" alt="logo Desenvolve Guapi">
+                </a>
+            </button>
+            <div id="navbar"><div class="nb_group nb_group1">
+                    <button class="navBtn" sec_num="1">
+                    <a href="./../../../index.html">
+                        <i class="fa-solid fa-home"></i>
+                    </a>    
+                    </button>
+                </div><div class="nb_group nb_group2">
+                    <label class="switch">
+                        <input type="checkbox" id="slider" checked accesskey="l">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="popUp">
+            <p class="popupText" aria-live="assertive"></p>
+            <button class="popup_close_btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="toTextReader" class="toReader instructions" >
+            <p class="textToReader" aria-live="assertive"></p>
+        </div>
+
+        <div id="game_Container" class="mainContainer">
+            <section id="introFormContainer"></section> <!--Pq esse elemento não é da classe maincontainer ?-->
+            <section id="gameControls" tabindex="19" aria-label="opções">
+                <button class="controlBtn mute_btn" id="mute" title="Som do jogo" tabindex="20" aria-label="alternar som">
+                    <i class="fa-solid fa-volume-high" id="mute_icon"></i>
+                </button>
+                <button class="controlBtn libras_btn" id=""  title="Linguagem de sinais" tabindex="21" aria-label="libras">
+                    <i class="fa-solid fa-hands"></i>
+                </button>
+                <button class="controlBtn screenReader_btn" id="" title="Leitor de tela" tabindex="22" aria-label="leitor de tela">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </section>
+            <div id="horizontalRuler" class="ruler horizontalRuler">
+                <div class="identifier"><span>A</span></div>
+                <div class="identifier"><span>B</span></div>
+                <div class="identifier"><span>C</span></div>
+                <div class="identifier"><span>D</span></div>
+            </div>
+            <div id="verticalRuler" class="ruler verticalRuler">
+                <div class="identifier"><span>1</span></div>
+                <div class="identifier"><span>2</span></div>
+                <div class="identifier"><span>3</span></div>
+                <div class="identifier"><span>4</span></div>
+            </div>
+            <section id="gameBoard" class="mainContainer"></section>
+            <section id="gameBoard_aside">
+                <div id="gameDisplay"></div>
+                <div class="gameAccessibleContainer" id="vLibras_container">
+                    <div vw class="enabled" style="margin: 0!important; height: 100%!important; display: none !important;"">
+                        <div vw-access-button class="active" style="position: relative;"></div>
+                        <div vw-plugin-wrapper>
+                          <div class="vw-plugin-top-wrapper"></div>
+                        </div>
+                    </div>      
+                    <div class="accessible_text">
+                        
+                    </div>
+                </div>
+            </section>
+        </div>
+        <img class="logo" src="https://res.cloudinary.com/dqzwqdc0a/image/upload/v1742615199/DGAS-Plataforma/plataforma/imgs/gamesLogo/rkdj6nxjbikoc2g2b3pc.png" alt="logo do Jogo 3">
+    </main>
+    <footer id="footerEl">
+        <div class="f_relative_root container">
+            <div id="footer_bg">
+                <img src="https://res.cloudinary.com/dqzwqdc0a/image/upload/v1742615193/DGAS-Plataforma/plataforma/imgs/dnd2fmsjnngj0w09qpxr.png" alt="nuvem" class="f_cl1 f_cl">
+                <img src="https://res.cloudinary.com/dqzwqdc0a/image/upload/v1742615194/DGAS-Plataforma/plataforma/imgs/u0as8xzlv6hwn2idc6v9.png" alt="nuvem" class="f_cl2 f_cl">
+                <img src="https://res.cloudinary.com/dqzwqdc0a/image/upload/v1742615192/DGAS-Plataforma/plataforma/imgs/n33rmitrvkkxonn5rbfk.png" alt="arbusto" class="f_a1 f_a">
+                <img src="https://res.cloudinary.com/dqzwqdc0a/image/upload/v1742615192/DGAS-Plataforma/plataforma/imgs/psem4jeotyzvsrxsa6uz.png" alt="arbusto" class="f_a2 f_a">
+            </div>
+            <div class="footer_rules container">
+            <div class="f_r_down container">
+                <img src="https://res.cloudinary.com/dqzwqdc0a/image/upload/v1742615206/DGAS-Plataforma/plataforma/logos/eaofwqphe01vazcakhwo.png" alt="régua" class="ruler_pg r1">
+                <img src="https://res.cloudinary.com/dqzwqdc0a/image/upload/v1742615207/DGAS-Plataforma/plataforma/logos/jnavwayjrh7bk92skbuz.png" alt="régua" class="ruler_pg r2">
+                <img src="https://res.cloudinary.com/dqzwqdc0a/image/upload/v1742615207/DGAS-Plataforma/plataforma/logos/yl44kzzoakshw0xkrecl.png" alt="régua" class="ruler_pg r3">
+                <img src="https://res.cloudinary.com/dqzwqdc0a/image/upload/v1742615208/DGAS-Plataforma/plataforma/logos/b3ewy7qsccfvt1saea4o.png" alt="régua" class="ruler_pg r4">
+            </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        fetch('/env')
+            .then(response => response.json())
+            .then(data => {
+                const port = data.PORT
+                new window.VLibras.Widget(`http://localhost:${port}/app`)
+            })
+            .catch(() => {
+                const fallbackScript = document.createElement('script')
+                fallbackScript.src = 'https://vlibras.gov.br/app/vlibras-plugin.js'
+                document.body.appendChild(fallbackScript)
+            })
+    </script>
+</body>
+</html>

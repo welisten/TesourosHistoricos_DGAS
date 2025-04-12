@@ -1,0 +1,35 @@
+{
+  "name": "tesouros_historicos",
+  "version": "0.0.9",
+  "description": "Um jogo da memória acessível que apresenta tesouros históricos de um município, ajudando crianças a aprender sobre artefatos e monumentos importantes por meio da ludicidade e inclusão. Desenvolvido com foco na acessibilidade.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "",
+    "test": "echo 'Nenhum teste definido' && exit 0",
+    "dev": "nodemon ."
+  },
+  "keywords": [
+    "jogo da memória",
+    "acessibilidade",
+    "educação",
+    "patrimônio",
+    "guapimirim"
+  ],
+  "author": "Wesley Welisten Rocha Santos Vieira",
+  "license": "ISC",
+  "dependencies": {
+    "apicache": "^1.6.3",
+    "compression": "^1.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "http-proxy-middleware": "^3.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "bugs": {},
+  "repository": {}
+}
