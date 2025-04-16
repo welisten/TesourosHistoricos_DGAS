@@ -10,10 +10,13 @@ async function loadEnviromentVariables(){
     try{
         const response = await fetch('/env')
         environmentVariables = await response.json()
-        console.log(`Caminho dos assets carregados com sucesso`)
-    
-        const assetsPath = environmentVariables.ASSETS_PATH    
-        updateAssetsPath(assetsPath)
+        if(environmentVariables){
+            const assetsPath = environmentVariables.ASSETS_PATH    
+            updateAssetsPath(assetsPath)
+        } else {
+            alert(`Caminho dos assets vazio`)
+            updateAssetsPath(defaultPath)
+        }
     } catch(error){
         console.error('Os caminhos dos Assets não foram carregados corretamente, os assets podem não estar corretos')
         updateAssetsPath(defaultPath)

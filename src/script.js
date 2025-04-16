@@ -36,6 +36,10 @@ import { getDeviceSize } from './js/utils/getDeviceSize.js';
 import { colors } from './Consts/Colors.js';
 import { gameData } from './Consts/gameData.js';
 import { loadEnviromentVariables } from './Consts/Values.js';
+import  './Style/game3.css'
+import './js/librasBeauty.js'
+
+updateGame3Colors()
 
 loadEnviromentVariables()
   .then(() => new Preloader())
@@ -339,14 +343,13 @@ function setLightModeSlider(updateGameColor){
         localStorage.setItem('isDarkMode', JSON.stringify(gameData.isDarkMode))
         
         root.style.setProperty('--letter--', colors.letter_l)
-        if(updateGameColor) updateGameColor()
       }else{
         gameData.isDarkMode = false
         localStorage.setItem('isDarkMode', JSON.stringify(gameData.isDarkMode))
         
         root.style.setProperty('--letter--', colors.letter_d)
-        if(updateGameColor) updateGameColor()
       }
+    if(updateGameColor) updateGameColor()
   })
 }
 function updateGame3Colors(){

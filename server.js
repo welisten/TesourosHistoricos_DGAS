@@ -29,8 +29,9 @@ const vLibrasproxyMiddleware    = require('./middlewares/vLibrasProxyMiddleware'
 const appProxyMiddleware        = require("./middlewares/appProxyMiddleware");
 const helmet                    = require('helmet')
 const compression               = require('compression')
+const path                      = require('path')
 
-if(!process.env.PORT || !process.env.ASSETS_PATH){
+if(!process.env.PORT || !process.env.APP_ASSETS_PATH){
     console.error("Erro: Variáveis de ambiente ausentes!")
     process.exit(1)
 }
@@ -41,8 +42,8 @@ const PORT  = process.env.PORT || 3333
 //  Middlewares globais
 
 app.use(cors())
-app.use(express.static('public'))
-app.use(express.static('src'))
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'src')))
 app.use(express.json())
 app.use(urlencoded({extended: true}))
 app.use(helmet({                    // melhora a segurança para ataques comuns
@@ -101,7 +102,7 @@ do servidor que inicialize a aplicação (monorepo ou raiz). */
 
 app.get('/env', (req, resp) => {
     resp.json({
-        ASSETS_PATH: process.env.ASSETS_PATH,
+        ASSETS_PATH: process.env.APP_ASSETS_PATH,
         PORT: PORT
     })
 })
