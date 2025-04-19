@@ -1,9 +1,10 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const webpack = require('webpack')
-const path = require('path')
+const HtmlWebpackPlugin     = require('html-webpack-plugin')
+const MiniCssExtractPlugin  = require('mini-css-extract-plugin')
+const BundleAnalyzerPlugin  = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const CopyWebpackPlugin     = require('copy-webpack-plugin')
+const TerserWebpackPlugin   = require('terser-webpack-plugin')
+const webpack               = require('webpack')
+const path                  = require('path')
 require('dotenv').config()
 
 const envKeys = Object.keys(process.env)
@@ -15,7 +16,11 @@ const envKeys = Object.keys(process.env)
 , {})
 
 module.exports = {
-    mode: process.env.NODE_ENV || 'development',
+    mode: process.env.APP_NODE_ENV || 'development',
+    optimization: {
+        minimize: true,
+        minimizer: [new TerserWebpackPlugin()]
+    },
     entry: {
         bundle: path.resolve(__dirname, 'src/script.js')
     },
