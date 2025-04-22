@@ -15,13 +15,15 @@
 require('dotenv').config()
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
-const PORT = process.env.PORT || 3333
+const PORT = process.env.PORT || 9999
+
+
 
 const vLibrasproxyMiddleware = createProxyMiddleware({
     target: 'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/vlibras-portal@dev', // URL do servidor externo
     changeOrigin: true,
     pathRewrite: {
-      [`http://localhost:${PORT}/app/target`]: 'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/vlibras-portal@dev/app/target', // Remove o prefixo /api da URL e ajusta o caminho
+      '.*(/app/target)$' : 'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/vlibras-portal@dev/app/target', // Remove o prefixo /api da URL e ajusta o caminho
     },
     on:{
         proxyReq: (proxyReq, req, res) => {
