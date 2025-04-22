@@ -152,7 +152,9 @@
             .then(response => response.json())
             .then(data => {
                 const port = data.PORT
-                new window.VLibras.Widget(`http://localhost:${port}/app`)
+                const origin = window.location.origin
+                console.log(`${origin}/app`)
+                new window.VLibras.Widget(`${origin}/app`)
             })
             .catch(() => {
                 const fallbackScript = document.createElement('script')

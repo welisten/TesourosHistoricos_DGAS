@@ -23,7 +23,7 @@ const vLibrasproxyMiddleware = createProxyMiddleware({
     target: 'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/vlibras-portal@dev', // URL do servidor externo
     changeOrigin: true,
     pathRewrite: {
-      '.*(/app/target)$' : 'https://cdn.jsdelivr.net/gh/spbgovbr-vlibras/vlibras-portal@dev/app/target', // Remove o prefixo /api da URL e ajusta o caminho
+      '^/app/target' : '/app/target', // Remove o prefixo /api da URL e ajusta o caminho
     },
     on:{
         proxyReq: (proxyReq, req, res) => {
