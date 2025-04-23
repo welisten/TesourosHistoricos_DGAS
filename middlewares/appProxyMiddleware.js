@@ -40,5 +40,6 @@ const appProxyMiddleware = createProxyMiddleware({
         }
     }
 })
+console.log("middleware 'appProxyMiddleware' inicializado")
 
 module.exports = appProxyMiddleware
