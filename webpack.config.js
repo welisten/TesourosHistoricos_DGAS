@@ -22,7 +22,8 @@ module.exports = {
         minimizer: [new TerserWebpackPlugin()]
     },
     entry: {
-        bundle: path.resolve(__dirname, 'src/script.js')
+        bundle: path.resolve(__dirname, 'src/script.js'),
+        vLibras: path.resolve(__dirname, 'src/js/utils/initializeVlibras.js')
     },
     output: {
         path: path.resolve(__dirname, 'public'),
@@ -62,7 +63,10 @@ module.exports = {
             new HtmlWebpackPlugin({
                 title: 'Tesouros Históricos',
                 filename: 'index.html',
-                template: path.resolve(__dirname, 'src/index.html')
+                template: path.resolve(__dirname, 'src/index.html'),
+                chunks: ['bundle', 'vLibras'],
+                inject: 'body',
+                scriptLoading: 'defer'
             }),
             new MiniCssExtractPlugin({
                 filename: 'game3.css'
