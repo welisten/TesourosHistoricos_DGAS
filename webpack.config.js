@@ -23,7 +23,6 @@ module.exports = {
     },
     entry: {
         bundle: path.resolve(__dirname, 'src/script.js'),
-        vLibras: path.resolve(__dirname, 'src/js/utils/initializeVlibras.js')
     },
     output: {
         path: path.resolve(__dirname, 'public'),
@@ -64,7 +63,7 @@ module.exports = {
                 title: 'Tesouros Históricos',
                 filename: 'index.html',
                 template: path.resolve(__dirname, 'src/index.html'),
-                chunks: ['bundle', 'vLibras'],
+                chunks: ['bundle'],
                 inject: 'body',
                 scriptLoading: 'defer'
             }),

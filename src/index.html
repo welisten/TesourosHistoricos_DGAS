@@ -147,20 +147,5 @@
             </div>
         </div>
     </footer>
-    <script>
-        fetch('/env')
-            .then(response => response.json())
-            .then(data => {
-                const port = data.PORT
-                const origin = window.location.origin
-                console.log(`${origin}/app`)
-                new window.VLibras.Widget(`${origin}/app`)
-            })
-            .catch(() => {
-                const fallbackScript = document.createElement('script')
-                fallbackScript.src = 'https://vlibras.gov.br/app/vlibras-plugin.js'
-                document.body.appendChild(fallbackScript)
-            })
-    </script>
 </body>
 </html>
