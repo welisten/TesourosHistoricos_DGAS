@@ -63,9 +63,6 @@ module.exports = {
                 title: 'Tesouros Históricos',
                 filename: 'index.html',
                 template: path.resolve(__dirname, 'src/index.html'),
-                chunks: ['bundle'],
-                inject: 'body',
-                scriptLoading: 'defer'
             }),
             new MiniCssExtractPlugin({
                 filename: 'game3.css'
