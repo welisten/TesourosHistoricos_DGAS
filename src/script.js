@@ -51,7 +51,7 @@ loadEnviromentVariables()
 document.addEventListener('DOMContentLoaded', () => {
     const origin = window.location.origin
     try{
-        const vlibras = new vLibras.Widget(`${origin}/app`)
+        const vlibras = new window.vLibras.Widget(`${origin}/app`)
         console.log("vlibras widget initialized", vlibras)
 
     } catch(error) {
